@@ -7,8 +7,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/rockiecn/test-sig/sig/implement/sigapi"
-	"github.com/rockiecn/test-sig/sig/implement/utils"
+	"github.com/rockiecn/sigtest/sigapi"
+	"github.com/rockiecn/sigtest/utils"
 )
 
 func main() {
