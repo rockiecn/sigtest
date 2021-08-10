@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"bytes"
 	"encoding/binary"
 )
 
@@ -10,6 +9,7 @@ func Str2Byte(str string) []byte {
 	return ret
 }
 
+// Byte2Str s
 func Byte2Str(data []byte) string {
 	//var str string = string(data[:len(data)])
 	var str string = string(data[:])
@@ -23,10 +23,13 @@ func MergeSlice(s1 []byte, s2 []byte) []byte {
 	return slice
 }
 
-func IntToBytes(n int) []byte {
-	data := int64(n)
-	bytebuf := bytes.NewBuffer([]byte{})
-	binary.Write(bytebuf, binary.BigEndian, data)
-	return bytebuf.Bytes()
+func Uint32ToBytes(n uint32) []byte {
+	a := make([]byte, 4)
+	binary.LittleEndian.PutUint32(a, n)
+	return a
 }
 
+func BytesToUint32(b []byte) uint32 {
+	_ = b[3] // bounds check hint to compiler; see golang.org/issue/14808
+	return uint32(b[0]) | uint32(b[1])<<8 | uint32(b[2])<<16 | uint32(b[3])<<24
+}
